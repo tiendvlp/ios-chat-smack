@@ -4,6 +4,7 @@ target 'Smack' do
 
   use_frameworks!
 
+pod 'SWRevealViewController'
 pod 'Alamofire'
 pod 'Socket.IO-Client-Swift'
 pod 'SwiftyJSON'
