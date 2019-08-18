@@ -9,22 +9,20 @@
 import UIKit
 
 class ChannelVC: UIViewController {
-
+    @IBOutlet weak var btnLogIn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.revealViewController()?.rearViewRevealWidth = view.frame.size.width - 40
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnLoginOnClickedListener(_ sender: Any) {
+        performSegue(withIdentifier: GOTO_LOGIN, sender: nil)
     }
-    */
-
+    
+    @IBAction func prepareForUnwind (segue : UIStoryboardSegue) {
+        
+    }
+    
 }
