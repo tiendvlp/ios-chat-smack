@@ -7,6 +7,6 @@ target 'Smack' do
 pod 'SWRevealViewController'
 pod 'Alamofire'
 pod 'Socket.IO-Client-Swift'
-pod 'SwiftyJSON'
-
+pod 'SwiftyJSON',
+pod 'pod 'Toast-Swift', '~> 5.0.0'
 end
