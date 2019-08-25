@@ -50,12 +50,16 @@ class AuthService {
         Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default,
                           headers: header).responseString {
                             (respond) in
-                            if respond.result.error == nil {
-                                print("\(self.TAG) Dang nhap thanh cong \(respond.value!)")
-                                completion(true)
-                            } else {
+                            if respond.result.error != nil {
                                 completion(false)
-                                print("\(self.TAG) Đăng nhập thất bại rồi: \(respond.error!)")
+                                print("\(self.TAG) Đăng ký thất bại rồi: \(respond.error!)")
+                            }
+                            else if respond.value != "Successfully created new account" {
+                                completion(false)
+                               print("\(self.TAG) Đăng ký thất bại rồi: \(respond.value)")
+                            } else {
+                                completion(true)
+                                print("\(self.TAG) Đăng ký thành công \(respond.value)")
                             }
                 
                           }
@@ -102,6 +106,7 @@ class AuthService {
     }
     
     func createUser (userName : String, avatarColor : String, avatarName : String, email : String, completion : @escaping completionHandler ) {
+        
         print("\(TAG) createUser is running")
         let lowerCaseEmail = email.lowercased()
         
@@ -126,6 +131,7 @@ class AuthService {
                     
                     UserDataService.instance.setUserData(id: request._id, avatarColor: request.avatarColor, name: request.name, email: request.email, avatarName: request.avatarName)
                     print("\(self.TAG) createUser success with id: \(request._id)")
+                    completion(true)
                 } catch let err {
                     debugPrint(err)
                 }

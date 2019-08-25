@@ -10,3 +10,5 @@ let URL_ADDUSER = "\(URL_BASE)v1/user/add"
 let TOKEN_KEY = "token"
 let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
+
+

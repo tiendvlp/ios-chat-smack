@@ -1,20 +1,22 @@
-//
-//  ChannelVC.swift
-//  Smack
-//
-//  Created by Đặng Tiến on 8/9/19.
-//  Copyright © 2019 Đặng Tiến. All rights reserved.
-//
-
 import UIKit
 
 class ChannelVC: UIViewController {
     @IBOutlet weak var btnLogIn: UIButton!
     
+    @IBOutlet weak var imgUserAvatar: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.revealViewController()?.rearViewRevealWidth = view.frame.size.width - 40
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+       
+        
+        imgUserAvatar.backgroundColor = UserDataService.instance.fromAvatarColorInString_toAvatarColorInUIColor()
+        imgUserAvatar.image = UIImage(named: UserDataService.instance.avatarName) 
     }
     
     @IBAction func btnLoginOnClickedListener(_ sender: Any) {
