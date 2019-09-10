@@ -51,7 +51,18 @@ class LoginVC: ViewController {
             (isSuccess) in
               self.isLoading(isLoading: false)
             if (isSuccess) {
-            self.dismiss(animated: true, completion: nil)
+                AuthService.instance.getUserByEmail(email: userEmail, completion: {
+                    (isSuccess, user) in
+                    if isSuccess {
+                        print("\(self.TAG) lay user thanh cong \(user!._id)   \(user!.name)")
+                        UserDataService.instance.setUserData(id: user!._id, avatarColor: user!.avatarColor, name: user!.name, email: user!.email, avatarName: user!.avatarName)
+                        NotificationCenter.default.post(name: Notification.Name(UserDataChangedListener), object: nil)
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("lay user that bai)")
+                    }
+                })
+            
             }
         })
     }

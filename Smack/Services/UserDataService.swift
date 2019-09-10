@@ -41,6 +41,18 @@ class UserDataService {
             return UIColor.lightGray
         }
     }
+    
+    func logout () {
+        avatarName = ""
+        name = ""
+        avatarColor = ""
+        email = ""
+        id = ""
+        AuthService.instance.authToken = ""
+        AuthService.instance.userEmail = ""
+        MessageService.instance.channels!.removeAll()
+        AuthService.instance.isLoggedIn = false
+    }
 }
 
 struct AvatarColor : Decodable {

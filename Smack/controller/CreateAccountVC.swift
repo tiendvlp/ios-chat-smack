@@ -102,7 +102,7 @@ class CreateAccountVC: UIViewController {
                             (isSuccess) in
                             
                             if isSuccess {
-                        
+                        NotificationCenter.default.post(name: Notification.Name(UserDataChangedListener), object: nil)
                             print("\(self.TAG) tạo user thành công")
                             AuthService.instance.isLoggedIn = true
                             self.performSegue(withIdentifier: UNWINDTO_CHANNEL, sender: nil)
@@ -118,12 +118,15 @@ class CreateAccountVC: UIViewController {
                 })
                 
             } else {
+
                 print("\(self.TAG) đăng ký thất bại")
                self.isLoading(isLoading: false)
             }
           
         })
     }
+    
+    //private func findUserByEmail (email : String, completion : ())
     
     private func isLoading (isLoading : Bool) {
         self.spnCreateAccount.isHidden = !isLoading

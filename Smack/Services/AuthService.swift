@@ -142,8 +142,44 @@ class AuthService {
             }
         }
     }
+    
+    func getUserByEmail (email : String, completion : @escaping  completionGetUserHandler) {
+        let url = ("\(URL_FINDUSER_BYID)\(email)")
+        
+        let header : [String : String] = [
+            "Authorization" : "Bearer \(self.authToken)",
+            "Content-Type" : "application/json; charset=utf-8" ]
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header)
+        .responseJSON(completionHandler: {
+            (respond) in
+            if respond.result.error == nil {
+                do {
+                    let request : FindUserByEmailRequest = try JSONDecoder().decode(FindUserByEmailRequest.self, from: respond.data!)
+                    completion(true, request)
+                } catch let err {
+                    print("\(self.TAG) failed to get parse JSON: \(err)")
+                    completion(false, nil)
+                }
+            } else {
+                completion(false, nil)
+            }
+            
+        })
+        
+    }
+    
+    
 }
 
+struct FindUserByEmailRequest : Decodable {
+    var avatarColor : String
+    var avatarName : String
+    var email : String
+    var name : String
+    var __v : Int
+    var _id : String
+}
 
 struct CreateUserRequest : Decodable {
     var __v : Int
