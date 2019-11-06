@@ -1,11 +1,3 @@
-//
-//  ChatMessageTableViewCell.swift
-//  Smack
-//
-//  Created by Đặng Tiến on 9/4/19.
-//  Copyright © 2019 Đặng Tiến. All rights reserved.
-//
-
 import UIKit
 
 class ChatMessageTableViewCell: UITableViewCell {
@@ -25,11 +17,12 @@ class ChatMessageTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUpView (userName : String, userAvatar : String, message : String, date : String) {
-        imgAvatar.backgroundColor = UserDataService.instance.fromAvatarColorInString_toAvatarColorInUIColor()
+    func setUpView (userName : String, userAvatar : String,avatarColor: String, message : String, date : String) {
+        imgAvatar.backgroundColor = UserDataService.instance.fromAvatarColorInString_toAvatarColorInUIColor(colorInString: avatarColor)
         imgAvatar.image = UIImage(named: userAvatar)
         txtChatMessage.text = message
         txtDate.text = date
+        txtUserName.text = userName
     }
 
 }

@@ -26,6 +26,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 import Foundation
 import zlib
 
@@ -71,7 +72,6 @@ class Decompressor {
         }
 
         return decompressed
-
     }
 
     private func decompress(bytes: UnsafePointer<UInt8>, count: Int, out:inout Data) throws {

@@ -24,8 +24,9 @@ class CreateAccountVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         isLoading(isLoading: false)
-        
+        print("view did appear createaccountvc")
         if UserDataService.instance.avatarName != "" {
+            print("avatarcuauser: \(UserDataService.instance.avatarName)")
             imgAvatar.image = UIImage(named: UserDataService.instance.avatarName)
         }
     }
